@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <span ng-hide="isAdmin()"><h1 class="page-header">Register</h1></span>
+      <span ng-show="isAdmin()"><h1 class="page-header">Add New User</span>
+    </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form" novalidate>
+  
+        <!-- User Name -->
+        <div class="form-group" 
+          ng-class="{ 'has-success': form.name.$valid && submitted,
+                      'has-error': form.name.$invalid && submitted }">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+            required/>
+          <p class="help-block" 
+            ng-show="form.name.$error.required && submitted">A name is required</p>
+        </div>
+
+        <!-- User Email -->
+        <div class="form-group" 
+        ng-class="{ 'has-success': form.email.$valid && submitted,
+                    'has-error': form.email.$invalid && submitted }">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+           required
+           mongoose-error/>
+          <p class="help-block" ng-show="form.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && submitted">
+            Please enter your email address.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <!-- User Password -->
+        <div class="form-group" 
+          ng-class="{ 'has-success': form.password.$valid && submitted,
+                      'has-error': form.password.$invalid && submitted }">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+           ng-minlength="3"
+           required
+           mongoose-error/>
+          <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+            Password must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
+
+        <!-- Role -->
+        <div ng-show="isAdmin()">
+          <div ng-hide="showRol">
+            <div class="form-group" ng-class="{ 
+              'has-success': form.rol.$valid && submitted,
+              'has-error': form.rol.$invalid && submitted }">
+              <label>Role</label>
+              <p class="input-group">
+                <select name="rol" class="form-control" ng-model="user.role"
+                  required
+                  mongoose-error>
+                  <option value=""></option>
+                  <option ng-repeat="role in roleList" ng-value="role._id">{{role.name | uppercase}}</option>
+                </select>
+                <!-- <span class="input-group-btn">
+                  <button type="submit" class="btn btn-danger" ng-click="delRole(user.role)"><span class="glyphicon glyphicon-remove"></span></button>
+                </span> -->
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-success" ng-click="switchRol()"><span class="glyphicon glyphicon-plus"></span></button>
+                </span>
+              </p>
+
+              <!-- Error Validation -->
+
+              <!-- Required Error -->
+              <p class="help-block"
+                 ng-show="form.rol.$error.required && submitted">
+                Role is required.
+              </p>
+
+              <!-- DB Error -->
+              <p class="help-block" ng-show="form.rol.$error.mongoose">
+                {{ errors.rol }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Add New Role Form -->
+          <div ng-show="showRol">
+            <form class="form">
+              <label>Enter New Role Name</label>
+              <p class="input-group">
+                <input type="text" class="form-control" placeholder="E.g. Accounting Admin" ng-model="newRole">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary" ng-click="addRole()">Submit</button>
+                </span>
+                <span class="input-group-btn">
+                  <a href="#" class="btn btn-default" ng-click="cancel()">Cancel</a>
+              </p>
+            </form>    
+          </div>          
+        </div>
+
+        <!-- Alert Delete User or Admin -->
+        <div ng-show="alertRole" class="alert alert-danger" role="alert">
+          <strong>A role in use cannot be removed.</strong><button type="button" class="close" ng-click="alertRole = false;">&times;</button>
+        </div>
+
+        <!-- Submit Button -->
+          <button class="btn btn-primary btn-lg btn-login" ng-click="register(form)" type="submit">
+            Submit New User
+          </button>        
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- Product View Title -->
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 class="page-header">Add New Product</h1>
+    </div>
+    <div class="col-sm-6">
+      <tabset>
+        <tab
+          ng-repeat="formtab in formtabs"
+          heading="{{formtab.title}}" 
+          active="formtab.active" 
+          disabled="formtab.disabled"
+          ui-sref="{{formtab.state}}">
+        </tab>
+      </tabset>
+    </div>
+  </div>
+  <div class="row>">
+    <div class="col-sm-6">
+      <h4 class="page-header">List View</h4>
+      <div class="prodImg">
+        <a href="#">
+          <img src="assets/images/homeDepot.jpg" alt="product.master" class="thumbnail" width="100"/>
+        </a>
+        <div ng-show="product.qty > 0">
+          <a class="btn btn-primary" href="#" role="button"><span class="badge">{{product.qty}}</span> in Stock</a>
+        </div>
+      </div>
+      <div class="prodBody">
+        <h4>{{product.title}}</h4>
+        <p>{{product.info}}</p>
+      </div>
+      <div class="btn-group center-block" role="group">
+        <!-- Submit New Product -->
+        <button
+          class="btn btn-primary btn-md btn-login"
+          type="submit"
+          ng-click="addNewProduct()">Submit
+        </button>
+        <!-- Cancel Button -->
+        <button
+          class="btn btn-default btn-md"
+          ui-sref="listProduct">Cancel</button>
+      </div>
+    </div> 
+    <div class="col-sm-6">
+      <form class="form" novalidate>
+        <div ui-view></div>             
+      </form>
+    </div>
+  </div>
+</div>

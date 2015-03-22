@@ -1,0 +1,289 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1 class="page-header">Site Settings</h1>
+                
+      <form class="form" novalidate>
+
+        <!-- Site Name-->
+        <div ng-hide="showNew">
+          <div class="form-group" ng-class="{ 
+            'has-success': form.name.$valid && submitted,
+            'has-error': form.name.$invalid && submitted }">
+
+            <!-- Site Name Labels -->
+            <label>Select Site Name or 
+              <span class="text-muted">
+                
+                <!-- Activate Site Label -->
+                <span ng-hide="site.isActive || !site.name" class="label label-default">
+                  <span class="glyphicon glyphicon-check"></span> Activate</span>
+
+                <!-- Copy Site Label -->
+                <span ng-show="site.name" class="label label-primary">
+                  <span class="glyphicon glyphicon-file"></span> Copy Site</span>
+
+                <!-- Add New Site Label -->
+                <span class="label label-success"> 
+                  <span class="glyphicon glyphicon-plus"></span> Add New Blank Settings.</span>
+
+                <!-- Delete Site Name Label -->
+                <span class="label label-danger" ng-hide="
+                !(site) ||
+                (site.name === '') ||
+                (site.name === 'Default')">
+                  <span class="glyphicon glyphicon-remove"></span> Delete selected Site.</span>
+              </span>
+            </label>
+
+            <!-- Site Name Inputs -->
+            <p class="input-group">
+                <span ng-show="site.name" class="input-group-btn">
+                  <span ng-hide="site.isActive">
+
+                    <!-- Activate Button -->
+                    <button type="submit" class="btn btn-default" ng-click="activateSite()"><span class="glyphicon glyphicon-unchecked"></span> Activate</button>
+                  </span>
+
+                  <!-- Avtivated View -->
+                  <span ng-show="site.isActive">
+                    <button type="submit" class="btn btn-success" ng-click="deactivateSite()"><span class="glyphicon glyphicon-check"></span> Activated</button>
+                  </span>
+                </span>
+
+              <!-- Site Name Select -->
+              <select ng-model="site" class="form-control" ng-options="site.name for site in siteList"></select>
+
+              <!-- Copy Site Button -->
+              <span ng-show="site.name" class="input-group-btn">
+                <button type="submit" class="btn btn-primary" ng-click="switchNew()"><span class="glyphicon glyphicon-file"></span></button>
+              </span>
+
+              <!-- Add New Site Button -->
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-success" ng-click="addNew()"><span class="glyphicon glyphicon-plus"></span></button>
+              </span>
+
+              <!-- Delete Site Button -->
+              <span ng-hide="
+                !(site) ||
+                (site.name === '') ||
+                (site.name === 'Default')" class="input-group-btn">
+                <button type="submit" class="btn btn-danger" ng-click="delSite(product.name)"><span class="glyphicon glyphicon-remove"></span></button>
+              </span>
+            </p>
+
+            <!-- DB Error -->
+            <p class="help-block" ng-show="form.name.$error.mongoose">
+              {{ errors.name }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Default Alert -->
+        <div ng-show="defaultAlert">
+          <div class="alert alert-danger" role="alert">Default Settings cannot be deleted.<button type="button" ng-click="defaultAlert = false;" class="close pull-right" aria-label="Close"><span aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></span></button></div>          
+        </div>
+
+        <!-- Add New Site Name -->
+        <div ng-show="showNew">
+          <div class="form-group" ng-class="{ 
+          'has-success': form.name.$valid && submitted,
+          'has-error': form.name.$invalid && submitted }">
+
+            <!-- Add New Site Label -->
+            <label>Site Name 
+              <span class="text-muted"> - Name to save as.</span>
+            </label>
+
+            <!-- Add New Site Input -->          
+            <p class="input-group">
+              <input type="text" name="name" class="form-control" ng-model="newSite"
+               mongoose-error
+               ng-minlength="2"
+               required/>
+
+              <!-- Cancel -->
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" ng-click="cancel()">Cancel</button>
+              </span>
+            </p>
+
+          <!-- Minimum Charter Length Error -->
+          <p class="help-block" ng-show="form.name.$error.minlength">
+            Site Name must be at least 2 charters.
+          </p>
+
+          <!-- Required Error --> 
+          <p class="help-block" ng-show="form.name.$error.required && submitted">
+            A Site name is required.
+          </p>
+
+          <!-- DB Error -->
+          <p class="help-block" ng-show="form.name.$error.mongoose">
+            {{ errors.name }}
+          </p>
+        </div>
+      </div>
+
+      <br><br>
+
+      <!-- Theme -->
+      <div  ng-show="site.name || newSite">
+        <div class="form-group" ng-class="{ 
+          'has-success': form.name.$valid && submitted,
+          'has-error': form.name.$invalid && submitted }">
+
+          <!-- Theme Labels -->
+          <label>Select Theme Name or 
+            <span class="text-muted">
+              
+              <!-- Activate Label -->
+              <span ng-hide="site.theme.isActive || !site.theme.name" class="label label-default">
+                <span class="glyphicon glyphicon-check"></span> Activate</span>
+
+              <!-- Copy Label -->
+              <span ng-show="site.theme.name" class="label label-primary">
+                <span class="glyphicon glyphicon-file"></span> Copy Theme</span>
+
+              <!-- Add New Theme Label -->
+              <span class="label label-success"> 
+                <span class="glyphicon glyphicon-plus"></span> Add New Blank Settings.</span>
+
+              <!-- Delete Theme Label -->
+              <span class="label label-danger" ng-hide="
+                (site.theme.name === '') ||
+                (site.theme.name === 'Default') ||
+                (site.theme.name === 'Primary') ||
+                (site.theme.name === 'Inverted')">
+                <span class="glyphicon glyphicon-remove"></span> Delete selected Theme.</span>
+            </span>
+          </label>
+
+          <!-- Theme Inputs -->
+          <p class="input-group">
+              <span ng-show="site.theme.name" class="input-group-btn">
+
+                <!-- Activate Button -->
+                <span ng-hide="site.theme.isActive">
+                  <button type="submit" class="btn btn-default" ng-click="activateTheme()"><span class="glyphicon glyphicon-unchecked"></span> Activate</button>
+                </span>
+
+                <!-- Activated View -->
+                <span ng-show="site.theme.isActive">
+                  <button type="submit" class="btn btn-success" ng-click="deactivateTheme()"><span class="glyphicon glyphicon-check"></span> Activated</button>
+                </span>
+              </span>
+
+              <!-- Theme Select -->
+              <select ng-model="site.theme" class="form-control">
+              </select>
+                
+
+              <!-- <select ng-model="site.theme.name" class="form-control">
+                <option value="Default">Default</option>
+                <option value="Primary">Primary</option>
+                <option value="Inverted">Inverted</option>
+              </select> -->
+
+              <!-- Copy Button -->
+              <span ng-show="site.theme" class="input-group-btn">
+                <button type="submit" class="btn btn-primary" ng-click="switchTheme()"><span class="glyphicon glyphicon-file"></span></button>
+              </span>
+
+              <!-- Add New Theme Button -->
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-success" ng-click="addTheme()"><span class="glyphicon glyphicon-plus"></span></button>
+              </span>
+
+              <!-- Delete Theme Button -->
+              <span ng-hide="
+                (site.theme.name === '') ||                
+                (site.theme.name === 'Default') ||
+                (site.theme.name === 'Primary') ||
+                (site.theme.name === 'Inverted')" class="input-group-btn">
+                <button type="submit" class="btn btn-danger" ng-click="delTheme(product.name)"><span class="glyphicon glyphicon-remove"></span></button>
+              </span>
+            </p>
+
+          <!-- DB Error -->
+          <p class="help-block" ng-show="form.name.$error.mongoose">
+            {{ errors.name }}
+          </p>
+        </div>
+
+        <!-- Theme Alert -->
+        <div ng-show="themeAlert" class="alert alert-danger" role="alert">Default Settings cannot be deleted.
+          <button type="button" ng-click="themeAlert = false;" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true">
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Add New Theme Name -->
+        <div ng-show="showNewTheme">
+          <div class="form-group" ng-class="{ 
+          'has-success': form.name.$valid && submitted,
+          'has-error': form.name.$invalid && submitted }">
+
+            <!-- Add New Theme Labels -->
+            <label>Theme Name 
+              <span class="text-muted"> - Name to save as.</span>
+            </label>
+
+            <!-- Add New Theme Inputs -->          
+            <p class="input-group">
+              <input type="text" name="name" class="form-control" ng-model="newSite"
+               mongoose-error
+               ng-minlength="2"
+               required/>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" ng-click="cancel()">Cancel</button>
+              </span>
+            </p>
+
+            <!-- Minimum Charter Length Error -->
+            <p class="help-block" ng-show="form.name.$error.minlength">
+              Theme Name must be at least 2 charters.
+            </p>
+
+            <!-- Required Error --> 
+            <p class="help-block" ng-show="form.name.$error.required && submitted">
+              A Theme name is required.
+            </p>
+
+            <!-- DB Error -->
+            <p class="help-block" ng-show="form.name.$error.mongoose">
+              {{ errors.name }}
+            </p>
+          </div>
+        </div>          
+        <hr>
+
+        <!-- Update Button -->
+        <div class="text-center" ng-hide="showNew || !site.name || !site.theme">
+          <button class="btn btn-primary btn-lg btn-login" type="submit" ng-click="save()"><span class="glyphicon glyphicon-save"></span> Update</button>
+        </div>
+
+        <!-- Save New Site Settings Button -->
+        <div ng-show="showNew">
+          <button class="btn btn-primary btn-lg btn-login" type="submit" ng-click="save()">
+            <span class="glyphicon glyphicon-save"></span> Save New Site Settings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Control Panel Navbar -->
+    <div class="col-sm-6" ng-show="site.theme">
+
+      <tabset>
+        <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled" ui-sref="{{tab.state}}">
+        </tab>
+      </tabset>
+      <br>
+      <div ui-view></div>
+    </div>
+  </div>  
+</div>          

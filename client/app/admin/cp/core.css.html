@@ -1,0 +1,57 @@
+<!-- Navbar Settings -->
+<!-- Navbar Theme -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.cat.$valid && submitted,
+  'has-error': form.cat.$invalid && submitted }">
+
+  <!-- Navbar Theme -->
+  <label>Navbar Theme</label>
+  <p class="input-group">
+    <select name="cat" class="form-control" ng-model="site.navTheme"
+      required
+      mongoose-error>
+      <option value=""></option>
+      <option ng-repeat="category in categoryList" ng-value="category._id">{{category.name | uppercase}}</option>
+    </select>
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-danger" ng-click="delTheme(product.cat)"><span class="glyphicon glyphicon-remove"></span></button>
+    </span>
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-success" ng-click="switchTheme()"><span class="glyphicon glyphicon-plus"></span></button>
+    </span>
+  </p>
+
+  <!-- Error Validation -->
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.cat.$error.required && submitted">
+    Theme is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.cat.$error.mongoose">
+    {{ errors.cat }}
+  </p>
+</div>
+
+<!-- Add New Navbar Theme Form -->
+<div ng-show="showNavTheme">
+<form class="form">
+  <label>Enter New Theme Name</label>
+  <p class="input-group">
+    <input type="text" class="form-control" placeholder="E.g. My Navbar Theme" ng-model="newNavTheme">
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary" ng-click="addTheme()"><span class="glyphicon glyphicon-plus"></span></button>
+    </span>
+    <span class="input-group-btn">
+      <a href="#" class="btn btn-default" ng-click="switchTheme()">Cancel</a>
+  </p>
+</form>    
+</div>
+
+<!-- Navbar Color Picker -->
+
+<!-- Navbar Pill Color -->
+<!-- Navbar Brand Text Color -->
+<!-- Navbar Link color -->

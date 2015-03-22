@@ -1,0 +1,16 @@
+<!-- Warning Discloser-->
+<div class="form-group" ng-class="{ 
+  'has-success': form.warn.$valid && submitted,
+  'has-error': form.warn.$invalid && submitted }">
+  <label>Warning Discloser</label>
+  <textarea name="warn" class="form-control" rows="3" ng-model="product.warn"
+    mongoose-error>
+  </textarea>
+
+  <!-- Error Validation -->    
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.warn.$error.mongoose">
+    {{ errors.warn }}
+  </p>
+</div>

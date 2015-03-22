@@ -1,0 +1,217 @@
+
+<!-- Facebook -->
+<!-- FB Identifier -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.fbID.$valid && submitted,
+  'has-error': form.fbID.$invalid && submitted }">
+
+  <!-- FB ID Labels -->
+  <label>Facebook Identifier 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"> </span> encripted.</span>
+  </label>
+
+  <!-- FB ID Inputs -->
+  <input type="text" name="fbID" class="form-control" ng-model="site. fbID"
+    mongoose-error
+    ng-minlength="2"/>
+
+  <!-- Minimum Charter Length Error -->
+    <p class="help-block" ng-show="form.fbID.$error.minlength">
+    Facebook Identifier must be at least 2 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.fbID.$error.mongoose">
+    {{ errors.fbID }}
+  </p>
+</div>
+
+<!-- Facebook Secret -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.fbID.$valid && submitted,
+  'has-error': form.fbID.$invalid && submitted }">
+
+  <!-- FB Secret Labels -->
+  <label>Facebook Secret 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- FB Secret Inputs -->
+  <input type="text" name="fbs" class="form-control" ng-model="site.fbs"
+   mongoose-error
+   ng-minlength="20"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.fbs.$error.minlength">
+    Facebook Secret must be at least 20 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.fbs.$error.mongoose">
+    {{ errors.fbs }}
+  </p>
+</div>
+
+<hr>
+
+<!-- Google Plus -->
+<!-- Google Plus Identifier -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.gpID.$valid && submitted,
+  'has-error': form.gpID.$invalid && submitted }">
+
+  <!-- G+ ID Labels -->
+  <label>Google Plus Identifier 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- G+ Inputs -->
+  <input type="text" name="gpID" class="form-control" ng-model="site.gpID"
+   mongoose-error
+   ng-minlength="20"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.gpID.$error.minlength">
+    Google Plus Identifier must be at least 20 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.gpID.$error.mongoose">
+    {{ errors.gpID }}
+  </p>
+</div>
+
+<!-- Google Plus Secret -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.gs.$valid && submitted,
+  'has-error': form.gs.$invalid && submitted }">
+
+  <!-- G+ Secret Labels -->
+  <label>Google Plus Secret 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- G+ Secret Inputs -->
+  <input type="text" name="gs" class="form-control" ng-model="site.gs"
+   mongoose-error
+   ng-minlength="2"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.gs.$error.minlength">
+    Google Plus Secret must be at least 2 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.gs.$error.mongoose">
+    {{ errors.gs }}
+  </p>
+</div>
+
+<hr>
+
+<!-- Twitter -->
+<!-- Twitter Identifier -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.ttID.$valid && submitted,
+  'has-error': form.ttID.$invalid && submitted }">
+
+  <!-- Twitter ID Labels -->
+  <label>Twitter Identifier 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- Twitter Inputs -->
+  <input type="text" name="ttID" class="form-control" ng-model="site.ttID"
+   mongoose-error
+   ng-minlength="20"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.ttID.$error.minlength">
+    Twitter Identifier must be at least 20 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.ttID.$error.mongoose">
+    {{ errors.ttID }}
+  </p>
+</div>
+
+<!-- Twitter Secret -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.tts.$valid && submitted,
+  'has-error': form.tts.$invalid && submitted }">
+
+  <!-- Twitter Secret Labels -->
+  <label>Twitter Secret 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- Twitter Secret Inputs -->
+  <input type="text" name="tts" class="form-control" ng-model="site.tts"
+   mongoose-error
+   ng-minlength="2"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.tts.$error.minlength">
+    Twitter Secret must be at least 2 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.tts.$error.mongoose">
+    {{ errors.tts }}
+  </p>
+</div>
+<hr>
+
+<!-- PayPal -->
+<!-- PayPal Identifier -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.ppID.$valid && submitted,
+  'has-error': form.ppID.$invalid && submitted }">
+
+  <!-- PayPal ID Labels -->
+  <label>PayPal Identifier 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted. </span>
+  </label>
+
+  <!-- PayPal ID Inputs -->
+  <input type="text" name="ppID" class="form-control" ng-model="site.ppID"
+   mongoose-error
+   ng-minlength="20"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.ppID.$error.minlength">
+    PayPal Identifier must be at least 20 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.ppID.$error.mongoose">
+    {{ errors.ppID }}
+  </p>
+</div>
+
+<!-- PayPal Secret -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.pps.$valid && submitted,
+  'has-error': form.pps.$invalid && submitted }">
+
+  <!-- PayPal Secret Labels -->
+  <label>PayPal Secret 
+    <span class="text-muted"> - <span class="glyphicon glyphicon-lock"></span> encripted.</span>
+  </label>
+
+  <!-- PayPal Secret Inputs -->
+  <input type="text" name="pps" class="form-control" ng-model="site.pps"
+   mongoose-error
+   ng-minlength="2"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.pps.$error.minlength">
+    PayPal Secret must be at least 2 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.pps.$error.mongoose">
+    {{ errors.pps }}
+  </p>
+</div>

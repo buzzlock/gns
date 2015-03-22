@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="page-header">User List</h1>
+    </div>    
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
+    </div>    
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="user in users">
+          <div class="row">
+            <div class="col-sm-1">
+              <a href="/profile/{{user._id}}">
+                <img src="assets/images/blank-profile.png" class="img-thumbnail" />
+              </a>
+            </div>
+            <div class="col-sm-8">
+              <strong>
+                Name: {{user.name}}
+              </strong>
+              <div class="text-muted">
+                Email: {{user.email}}
+              </div>
+              <div class="text-muted">
+                Role: {{user.role}}
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <a ng-click="edit(user)">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            </div>
+            <div class="col-sm-1"
+              <a ng-click="view(user)">
+                <span class="glyphicon glyphicon-eye-open"></span>
+              </a>
+            </div>
+            <div class="col-sm-1" ng-hide="user.title === 'admin' || user.title === 'user'">
+              <a ng-click="delete(user)" class="trash">
+                <span class="glyphicon glyphicon-trash"></span>
+              </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <a ng-href="/admin/user/add" button type="button" class="btn btn-primary btn-lg btn-block">Add New User</a>
+    </div>
+  </div>
+</div>

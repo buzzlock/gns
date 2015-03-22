@@ -1,0 +1,55 @@
+<div ng-controller="NavbarCtrl">
+  <div ng-class="'navbar navbar-default navbar-fixed-top'">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">1-12th Scale</a>
+      </div>
+      <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li ng-repeat="item in menu" ng-class="{active: isActive(item.state)}">
+              <a ui-sref="{{item.state}}">{{item.title}}</a>
+          </li>
+
+          <li ng-show="isAdmin()" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li role="presentation" class="dropdown-header">User</li>
+              <li ng-repeat="user in userMenu"><a ui-sref="{{user.state}}">{{user.title}}</a></li>
+              <li class="divider"></li>
+              <li role="presentation" class="dropdown-header">Role</li><li><a ng-href="admin/role/{{getCurrentRoleId()}}">User Roles</a></li>
+              <li class="divider"></li>
+              <li role="presentation" class="dropdown-header">Product</li>
+              <li ng-repeat="prod in prodMenu"><a ui-sref="{{prod.state}}">{{prod.title}}</a></li>
+              <li class="divider"></li>
+              <li role="presentation" class="dropdown-header">Task</li>
+              <li ng-repeat="task in taskMenu"><a ui-sref="{{task.state}}">{{task.title}}</a></li>
+              <li class="divider"></li>           
+              <li><a ui-sref="cp.info"><strong>Control Panel</strong></a></li>
+            </ul>
+          </li>        
+        </ul>
+        <!-- Navbar Search... -->
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search...">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+          <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+          <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
+          <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+          <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

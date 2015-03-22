@@ -1,0 +1,393 @@
+<!-- Color -->
+<div ng-hide="showCol">
+  <div class="form-group" ng-class="{ 
+    'has-success': form.col.$valid && submitted,
+    'has-error': form.col.$invalid && submitted }">
+    <label>Color</label>
+    <p class="input-group">
+      <select name="col" class="form-control" ng-model="product.col"
+        mongoose-error>
+        <option value=""></option>
+        <option ng-repeat="color in colorList" ng-value="color._id">{{color.name | uppercase}}</option>
+      </select>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger" ng-click="delColor(product.col)"><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" ng-click="switchCol()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </p>
+
+    <!-- Error Validation -->
+
+    <!-- DB Error -->
+    <p class="help-block" ng-show="form.col.$error.mongoose">
+      {{ errors.col }}
+    </p>
+  </div>
+</div>
+
+<!-- Add New Color Form -->
+<div ng-show="showCol">
+  <form class="form">
+    <label>Enter New Color Name</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="E.g. Light Blue" ng-model="newColor">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addColor()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <a href="#" class="btn btn-default" ng-click="switchCol()">Cancel</a>
+    </p>
+  </form>    
+</div>
+
+<!-- Pattern -->
+<div ng-hide="showPat">
+  <div class="form-group" ng-class="{ 
+    'has-success': form.pat.$valid && submitted,
+    'has-error': form.pat.$invalid && submitted }">
+    <label>Pattern</label>
+    <p class="input-group">
+      <select name="pat" class="form-control" ng-model="product.pat"
+        mongoose-error>
+        <option value=""></option>
+        <option ng-repeat="pattern in patternList" ng-value="pattern._id">{{pattern.name | uppercase}}</option>
+      </select>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger" ng-click="delPattern(product.pat)"><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" ng-click="switchPat()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </p>
+
+    <!-- Error Validation -->
+
+    <!-- DB Error -->
+    <p class="help-block" ng-show="form.pat.$error.mongoose">
+      {{ errors.pat }}
+    </p>
+  </div>
+</div>
+
+<!-- Add New Pattern Form -->
+<div ng-show="showPat">
+  <form class="form">
+    <label>Enter New Pattern Name</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="E.g. Striped" ng-model="newPattern">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addPattern()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <a href="#" class="btn btn-default" ng-click="switchPat()">Cancel</a>
+    </p>
+  </form>    
+</div>
+
+ <!-- Style -->
+<div ng-hide="showSty">
+  <div class="form-group" ng-class="{ 
+    'has-success': form.sty.$valid && submitted,
+    'has-error': form.sty.$invalid && submitted }">
+    <label>Style</label>
+    <p class="input-group">
+      <select name="sty" class="form-control" ng-model="product.sty"
+        mongoose-error>
+        <option value=""></option>
+        <option ng-repeat="style in styleList" ng-value="style._id">{{style.name | uppercase}}</option>
+      </select>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger" ng-click="delStyle(product.sty)"><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" ng-click="switchSty()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </p>
+
+    <!-- Error Validation -->
+
+    <!-- DB Error -->
+    <p class="help-block" ng-show="form.sty.$error.mongoose">
+      {{ errors.sty }}
+    </p>
+  </div>
+</div>
+
+<!-- Add New Style Form -->
+<div ng-show="showSty">
+  <form class="form">
+    <label>Enter New Style Name</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="E.g. Large" ng-model="newStyle">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addStyle()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <a href="#" class="btn btn-default" ng-click="switchSty()">Cancel</a>
+    </p>
+  </form>    
+</div>
+
+<!-- Bullets -->
+
+
+
+<!-- Product Dimension -->
+
+<!-- Product Width -->
+<div class="form-group" ng-class="{
+  'has-success': form.width.$valid && submitted,
+  'has-error': form.width.$invalid && submitted }">
+  <label>Product Dimension</label>
+  <div class="input-group">
+    <div class="input-group-addon">Width</div>
+    <input type="text" name="width" class="form-control" ng-model="product.width"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>
+  
+  <!-- Error Validation -->    
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.width.$error.required && submitted">
+     A <b>Width</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.width.$error.mongoose">
+    {{ errors.width }}
+  </p>
+
+</div>
+
+<!-- Product Length -->
+
+<div class="form-group" ng-class="{
+  'has-success': form.length.$valid && submitted,
+  'has-error': form.length.$invalid && submitted }">
+  <div class="input-group">
+    <div class="input-group-addon">Length</div>
+    <input type="text" name="length" class="form-control" ng-model="product.length"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->
+  
+  <p class="help-block"
+    ng-show="form.length.$error.required && submitted">
+    A <b>Length</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.length.$error.mongoose">
+    {{ errors.length }}
+  </p>
+
+</div>
+
+<!-- Product Height -->
+
+<div class="form-group" ng-class="{
+  'has-success': form.height.$valid && submitted,
+  'has-error': form.height.$invalid && submitted }">
+  <div class="input-group">
+    <div class="input-group-addon">Height</div>
+    <input type="text" name="height" class="form-control" ng-model="product.height"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>  
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->    
+  
+  <p class="help-block"
+     ng-show="form.height.$error.required && submitted">
+     A <b>Height</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.height.$error.mongoose">
+    {{ errors.height }}
+  </p>
+</div>    
+
+<!-- Product Weight -->
+<div class="form-group">
+  <label>Product Weight</label>
+  <div class="input-group">
+    <div class="input-group-addon">
+      <input type="text" name="lb" class="form-control" ng-class="{
+        'has-success': form.lb.$valid && submitted,
+        'has-error': form.lb.$invalid && submitted }" ng-model="product.lb"
+        mongoose-error/>
+    </div>      
+    <div class="input-group-addon"><label>lb(s).</label></div>
+    <div class="input-group-addon">
+      <input type="text" name="oz" class="form-control" ng-class="{
+        'has-success': form.oz.$valid && submitted,
+        'has-error': form.oz.$invalid && submitted }" ng-model="product.oz"
+        mongoose-error
+        required/>
+    </div>
+    <div class="input-group-addon"><label>oz(s).</label></div>
+  </div>  
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->    
+  <!-- Product Ounce -->
+  <p class="help-block"
+     ng-show="form.oz.$error.required && submitted">
+     A minimum <b>ounce</b> weight is required.
+  </p>
+
+  <!-- DB Error -->
+
+  <!-- Product Pound -->
+  <p class="help-block" ng-show="form.lb.$error.mongoose">
+    {{ errors.lb }}
+  </p>
+  <!-- Product Ounce -->
+  <p class="help-block" ng-show="form.oz.$error.mongoose">
+    {{ errors.oz }}
+  </p>
+</div>
+<hr>
+<!-- Package Dimension -->
+
+<!-- Package Width -->
+<div class="form-group" ng-class="{
+  'has-success': form.pwidth.$valid && submitted,
+  'has-error': form.pwidth.$invalid && submitted }">
+  <label>Package Dimension</label>
+  <div class="input-group">
+    <div class="input-group-addon">Width</div>
+    <input type="text" name="pwidth" class="form-control" ng-model="product.pwidth"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>
+  
+  <!-- Error Validation -->    
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.pwidth.$error.required && submitted">
+     A <b>Width</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.pwidth.$error.mongoose">
+    {{ errors.pwidth }}
+  </p>
+
+</div>
+
+<!-- Package Length -->
+
+<div class="form-group" ng-class="{
+  'has-success': form.plength.$valid && submitted,
+  'has-error': form.plength.$invalid && submitted }">
+  <div class="input-group">
+    <div class="input-group-addon">Length</div>
+    <input type="text" name="plength" class="form-control" ng-model="product.plength"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->
+  
+  <p class="help-block"
+    ng-show="form.plength.$error.required && submitted">
+    A <b>Length</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.plength.$error.mongoose">
+    {{ errors.plength }}
+  </p>
+
+</div>
+
+<!-- Package Height -->
+
+<div class="form-group" ng-class="{
+  'has-success': form.pheight.$valid && submitted,
+  'has-error': form.pheight.$invalid && submitted }">
+  <div class="input-group">
+    <div class="input-group-addon">Height</div>
+    <input type="text" name="pheight" class="form-control" ng-model="product.pheight"
+      mongoose-error
+      required/>
+    <div class="input-group-addon">in.</div>
+  </div>  
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->    
+  
+  <p class="help-block"
+     ng-show="form.pheight.$error.required && submitted">
+     A <b>Height</b> measurement in inches is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.pheight.$error.mongoose">
+    {{ errors.pheight }}
+  </p>
+</div>    
+
+<!-- Package Weight -->
+<div class="form-group">
+  <label>Package Weight</label>
+  <div class="input-group">
+    <div class="input-group-addon">
+      <input type="text" name="plb" class="form-control" ng-class="{
+        'has-success': form.plb.$valid && submitted,
+        'has-error': form.plb.$invalid && submitted }" ng-model="product.plb"
+        mongoose-error/>
+    </div>      
+    <div class="input-group-addon"><label>lb(s).</label></div>
+    <div class="input-group-addon">
+      <input type="text" name="poz" class="form-control" ng-class="{
+        'has-success': form.poz.$valid && submitted,
+        'has-error': form.poz.$invalid && submitted }" ng-model="product.poz"
+        mongoose-error
+        required/>
+    </div>
+    <div class="input-group-addon"><label>oz(s).</label></div>
+  </div>  
+
+  <!-- Error Validation -->
+  
+  <!-- Required Error -->    
+  <!-- Package Ounce -->
+  <p class="help-block"
+     ng-show="form.poz.$error.required && submitted">
+     A minimum <b>ounce</b> weight is required.
+  </p>
+
+  <!-- DB Error -->
+
+  <!-- Package Pound -->
+  <p class="help-block" ng-show="form.plb.$error.mongoose">
+    {{ errors.plb }}
+  </p>
+  <!-- Package Ounce -->
+  <p class="help-block" ng-show="form.poz.$error.mongoose">
+    {{ errors.poz }}
+  </p>
+</div>

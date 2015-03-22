@@ -1,0 +1,212 @@
+<!-- Product Name -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.title.$valid && submitted,
+  'has-error': form.title.$invalid && submitted }">
+  <label>Product Name 
+    <span class="text-muted"> (Displayed as title.)</span>
+  </label>
+  <input type="text" name="title" class="form-control" placeholder="Product Title" ng-model="product.title"
+   mongoose-error
+   ng-minlength="3"
+   required/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.title.$error.minlength">
+    Product Name must be at least 3 charters.
+  </p>
+
+  <!-- Required Error --> 
+  <p class="help-block" ng-show="form.title.$error.required && submitted">
+    A product title is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.title.$error.mongoose">
+    {{ errors.title }}
+  </p>
+</div>
+
+<!-- UPC -->
+<div class="form-group" ng-class="{
+  'has-success': form.upc.$valid && submitted,
+  'has-error': form.upc.$invalid && submitted }">
+  <label>UPC</label>
+  <input type="text" name="upc" class="form-control" ng-model="product.upc"
+         required
+         mongoose-error/>
+
+  <!-- Error Validation -->
+
+  <!-- Valid Type (String) Error -->
+  <p class="help-block" ng-show="form.upc.$error.upc && submitted">
+    Does not look like a valid UPC.
+  </p>
+
+  <!-- Required Error -->
+  <p class="help-block" ng-show="form.upc.$error.required && submitted">
+    UPC is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.upc.$error.mongoose">
+    {{ errors.upc }}
+  </p>
+</div>
+
+<!-- SKU -->
+<div class="form-group" ng-class="{
+  'has-success': form.sku.$valid && submitted,
+  'has-error': form.sku.$invalid && submitted }">
+  <label>SKU</label>
+  <input type="text" name="sku" class="form-control" ng-model="product.sku"
+    ng-minlength="5"
+    required
+    mongoose-error/>
+
+  <!-- Error Validation -->
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block"
+     ng-show="form.sku.$error.minlength && submitted">
+    SKU must be at least 5 characters.
+  </p>
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.sku.$error.required && submitted">
+    SKU is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.sku.$error.mongoose">
+    {{ errors.sku }}
+  </p>
+</div>
+
+<!-- Inventory Quantity -->
+<div class="form-group" ng-class="{
+  'has-success': form.qty.$valid && submitted,
+  'has-error': form.qty.$invalid && submitted }">
+  <label>Inventory Quantity</label>
+  <input type="text" name="qty" class="form-control" ng-model="product.qty"
+    required
+    mongoose-error/>
+
+  <!-- Error Validation -->    
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.qty.$error.required && submitted">
+    Inventory Quantity is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.qty.$error.mongoose">
+    {{ errors.qty }}
+  </p>
+</div>
+
+<!-- Category -->
+<div ng-hide="showCat">
+  <div class="form-group" ng-class="{ 
+    'has-success': form.cat.$valid && submitted,
+    'has-error': form.cat.$invalid && submitted }">
+    <label>Category</label>
+    <p class="input-group">
+      <select name="cat" class="form-control" ng-model="product.cat"
+        required
+        mongoose-error>
+        <option value=""></option>
+        <option ng-repeat="category in categoryList" ng-value="productCat._id">{{productCat.title | uppercase}}</option>
+      </select>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger" ng-click="delCategory(product.cat)"><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" ng-click="switchCat()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    </p>
+
+    <!-- Error Validation -->
+
+    <!-- Required Error -->
+    <p class="help-block"
+       ng-show="form.cat.$error.required && submitted">
+      Category is required.
+    </p>
+
+    <!-- DB Error -->
+    <p class="help-block" ng-show="form.cat.$error.mongoose">
+      {{ errors.cat }}
+    </p>
+  </div>
+</div>
+
+<!-- Add New Category Form -->
+<div ng-show="showCat">
+  <form class="form">
+    <label>Enter New Category Name</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="E.g. Building Material" ng-model="newCategory">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addCategory()"><span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+      <span class="input-group-btn">
+        <a href="#" class="btn btn-default" ng-click="switchCat()">Cancel</a>
+    </p>
+  </form>    
+</div>
+
+<!-- Bullet Pannel -->  
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat = "bullet in bulletList">{{bullet}}<button type="button" class="close" ng-click="delBullet(bullet)"><span class="glyphicon glyphicon-remove pull-right"></span></button></a></li>
+</ul>
+<div class="form-group" ng-class="{
+  'has-success': form.bul.$valid && submitted,
+  'has-error': form.bul.$invalid && submitted }">
+  <label>Bullets</label>
+  <p class="input-group">
+    <input name="bul" class="form-control" ng-model="newBullet"
+    mongoose-error/>
+    <span class= "input-group-btn">
+      <button type="submit" class="btn btn-primary" ng-click="addBullet(newBullet); newBullet=''">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </span>
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.bul.$error.mongoose">
+    {{ errors.bul }}
+  </p>
+</div>
+
+<!-- Info -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.info.$valid && submitted,
+  'has-error': form.info.$invalid && submitted }">
+  <label>Description</label>
+  <textarea name="info" class="form-control" rows="3" ng-model="product.info"
+         ng-minlength="5"
+         required
+         mongoose-error></textarea>
+
+  <!-- Error Validation -->
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block"
+     ng-show="form.info.$error.minlength && submitted">
+    Description must be at least 5 characters.
+  </p>
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.info.$error.required && submitted">
+    Description is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.info.$error.mongoose">
+    {{ errors.info }}
+  </p>
+</div>

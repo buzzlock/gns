@@ -1,0 +1,76 @@
+<!-- Master Img Uploader -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.master.$valid && submitted,
+  'has-error': form.master.$invalid && submitted }">
+  <label>Master Image <span class="text-muted"> (Featured Image)</span></label>
+  <input type="file" name="master" class="form-control" ng-model="product.master"  required 
+    mongoose-error/> 
+
+  <!-- Add Image viewer here. -->
+
+  <!-- Required Error -->
+  <p class="help-block"
+     ng-show="form.master.$error.required && submitted">
+    Master Image is required.
+  </p> 
+
+  <!-- DB Error -->
+  <p class="help-block" 
+    ng-show="form.master.$error.mongoose">
+    {{ errors.master }}
+  </p>
+</div> 
+
+<!-- Sub1 Img Uploader -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.sub1.$valid && submitted,
+  'has-error': form.sub1.$invalid && submitted }">
+  <label>Sub Image 1 </label>
+  <input type="file" name="sub1" class="form-control" ng-model="product.sub1"mongoose-error/>
+
+  <!-- Add Image viewer here. -->
+
+  <!-- Error Validation -->
+
+  <!-- DB Error -->
+  <p class="help-block" 
+    ng-show="form.sub1.$error.mongoose">
+    {{ errors.sub1 }}
+  </p>
+</div>
+
+<!-- Sub2 Img Uploader -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.sub2.$valid && submitted,
+  'has-error': form.sub2.$invalid && submitted }">
+  <label>Sub Image 2 </label>
+  <input type="file" name="sub2" class="form-control" ng-model="product.sub2"mongoose-error/>
+
+  <!-- Add Image viewer here. -->
+
+  <!-- Error Validation -->
+
+  <!-- DB Error -->
+  <p class="help-block" 
+    ng-show="form.sub2.$error.mongoose">
+    {{ errors.sub2 }}
+  </p>
+</div>
+
+<!-- Sub3 Img Uploader -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.sub3.$valid && submitted,
+  'has-error': form.sub3.$invalid && submitted }">
+  <label>Sub Image 3 </label>
+  <input type="file" name="sub3" class="form-control" ng-model="product.sub3"mongoose-error/>
+
+  <!-- Add Image viewer here. -->
+
+  <!-- Error Validation -->
+
+  <!-- DB Error -->
+  <p class="help-block" 
+    ng-show="form.sub3.$error.mongoose">
+    {{ errors.sub3 }}
+  </p>
+</div>

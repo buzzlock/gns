@@ -1,0 +1,192 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">User Roles - {{user.role | uppercase}} is your current role. id = {{getCurrentRoleId}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <ul class="list-group">
+        <li class="list-group-item"  ng-repeat="role in roles">
+          <a ng-href="/{{role._id}}" ng-click="selRole(role)" tooltip="{{role.info}}">{{role.title | uppercase}}<button type="button" class="close" ng-hide="role.active" ng-click="del(role)">&times;</button></a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Pages</div>
+        <table class="table">
+          <tr class="animate-switch-container" ng-switch on="role.home">
+            <th>Home</th>
+            <th>
+              <div class="animate-switch" ng-switch-when="true">
+                <button class="btn btn-success btn-xs glyphicon glyphicon-ok" ng-click="shome()"></button>
+              </div>
+              <div class="animate-switch" ng-switch-when="false">
+                <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="shome()"></button>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Settings</th>
+            <th>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </th>
+          </tr>
+          <tr>
+            <th>Sign Up</th>
+            <th>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </th>
+          </tr>
+          <tr>
+            <th>Login</th>
+            <th>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </th>
+          </tr>
+            <th>User Role</th>
+            <th>
+              <button 
+                class="btn btn-danger btn-xs glyphicon glyphicon-remove">
+              </button>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Features</div>
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Add</th>
+            <th>Edit</th>
+            <th>List</th>
+            <th>View</th>
+          </tr>
+          <tr>
+            <th>Product</th>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-danger btn-xs glyphicon glyphicon-remove">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>Task</th>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+          </tr>
+            <th>Tool</th>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>User</th>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+            <td>
+              <button 
+                class="btn btn-success btn-xs glyphicon glyphicon-ok">
+              </button>
+            </td>
+          </tr>
+          <tr>
+        </table>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div ng-hide="alertRole"><br><br><br></div>      
+      <!-- Alert Delete User or Admin -->
+      <div ng-show="alertRole" class="alert alert-danger" role="alert">
+        <strong>A role in use cannot be removed.</strong><button type="button" class="close" ng-click="alertRole = false;">&times;</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-11">
+      <form class="role-form">
+        <label>Add New Role</label>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="E.g. Accounting Admin" ng-model="newRole">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" ng-click="addRole()">Submit</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

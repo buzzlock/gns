@@ -1,0 +1,57 @@
+<!-- Brand -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.brand.$valid && submitted,
+  'has-error': form.brand.$invalid && submitted }">
+
+  <!-- Brand Label -->
+  <label>Site Brand 
+    <span class="text-muted"> - Brand displayed on navbar.</span>
+  </label>
+
+  <!-- Brand Inputs -->
+  <input type="text" name="brand" class="form-control" ng-model="site.brand"
+    mongoose-error
+    ng-minlength="2"
+    required/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.brand.$error.minlength">
+    Site Brand must be at least 2 charters.
+  </p>
+
+  <!-- Required Error --> 
+  <p class="help-block" ng-show="form.brand.$error.required && submitted">
+    A Site brand is required.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.brand.$error.mongoose">
+    {{ errors.brand }}
+  </p>
+</div>
+
+<!-- Title -->
+<div class="form-group" ng-class="{ 
+  'has-success': form.title.$valid && submitted,
+  'has-error': form.title.$invalid && submitted }">
+
+  <!-- Title Labels -->
+  <label>Site Title 
+    <span class="text-muted"> - Title is displayed on Browser's tab.</span>
+  </label>
+
+  <!-- Title Inputs -->
+  <input type="text" name="title" class="form-control" ng-model="site.title"
+    mongoose-error
+    ng-minlength="2"/>
+
+  <!-- Minimum Charter Length Error -->
+  <p class="help-block" ng-show="form.title.$error.minlength">
+    Site Title must be at least 2 charters.
+  </p>
+
+  <!-- DB Error -->
+  <p class="help-block" ng-show="form.title.$error.mongoose">
+    {{ errors.title }}
+  </p>
+</div>
